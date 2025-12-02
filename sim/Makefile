@@ -90,6 +90,7 @@ build_verilator: $(sv_list)
 	verilator \
 	-cc \
 	-sv \
+	--no-timing \
 	+1800-2017ext+sv \
 	-Wno-fatal \
 	$(VERILATOR_5X_OPTS) \
@@ -112,6 +113,7 @@ build_verilator_wf: $(sv_list)
 	verilator \
 	-cc \
 	-sv \
+	--no-timing \
 	+1800-2017ext+sv \
 	-Wno-fatal \
 	$(VERILATOR_5X_OPTS) \

@@ -8,7 +8,7 @@ OUTPUT_ARCH( "riscv" )
 ENTRY(_start)
 
 MEMORY {
-  RAM (rwx) : ORIGIN = 0x0, LENGTH = 64K
+  RAM (rwx) : ORIGIN = 0x0, LENGTH = 128K
 }
 
 STACK_SIZE = 1024;
@@ -26,9 +26,16 @@ SECTIONS {
     SIM_STOP = .;
     LONG(0x6F);
     LONG(-1);
-    . = 0x100;
+    . = 0x800;
     PROVIDE(__TEXT_START__ = .);
     *(.text.init) 
+  } >RAM
+
+
+  .text.start 0xB000: { 
+    PROVIDE(__TEXT_END__ = .);
+    PROVIDE(__TEXT_START__ = .);
+    *(.text.start) 
   } >RAM
 
   .text  : {
